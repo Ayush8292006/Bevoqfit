@@ -10,6 +10,8 @@ import { CinematicIntro } from './components/intro/CinematicIntro';
 
 import { AnnouncementBar } from './components/layout/AnnouncementBar';
 import { Navbar } from './components/layout/Navbar';
+import { MobileAppHeader } from './components/mobile/MobileAppHeader';
+import { MobileStoriesRow } from './components/mobile/MobileStoriesRow';
 import { MobileBottomNav } from './components/layout/MobileBottomNav';
 import { SearchModal } from './components/layout/SearchModal';
 import { CartDrawer } from './components/layout/CartDrawer';
@@ -34,8 +36,8 @@ import { ProductDetailsModal } from './components/shop/ProductDetailsModal';
 
 export const AppContent: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#080808] text-[#F5F5F2] font-sans selection:bg-white selection:text-black relative pb-16 lg:pb-0">
-      {/* Custom Desktop Streetwear Cursor */}
+    <div className="min-h-screen bg-[#080808] text-[#F5F5F2] font-sans selection:bg-white selection:text-black relative pb-20 lg:pb-0">
+      {/* Custom Desktop Streetwear Cursor (Automatically disabled on touch screens) */}
       <CustomCursor />
 
       {/* Global Interactive Notification Toasts */}
@@ -52,11 +54,19 @@ export const AppContent: React.FC = () => {
       <SizeGuideModal />
       <ProductDetailsModal />
 
-      {/* Top Banner & Sticky Navigation */}
+      {/* Top Banner */}
       <AnnouncementBar />
+
+      {/* Native In-App Mobile Header (Mobile only) */}
+      <MobileAppHeader />
+
+      {/* In-App Stories / Drop Highlights Row (Mobile only) */}
+      <MobileStoriesRow />
+
+      {/* Desktop Sticky Navigation Bar */}
       <Navbar />
 
-      {/* Native App-like Mobile Sticky Bottom Nav Bar */}
+      {/* Native App-like Mobile Sticky Bottom Navigation Bar */}
       <MobileBottomNav />
 
       {/* Main 100% Oversized T-Shirt Experience */}

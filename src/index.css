@@ -5,6 +5,7 @@
 @layer base {
   * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
   }
 
   html {
@@ -12,12 +13,16 @@
     background-color: #080808;
     color: #F5F5F2;
     scroll-behavior: smooth;
+    /* Native app-like touch feel */
+    touch-action: manipulation;
   }
 
   body {
     overflow-x: hidden;
     background-color: #080808;
     font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* Custom scrollbar */
@@ -80,4 +85,3 @@
   background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
   background-size: 24px 24px;
 }
-

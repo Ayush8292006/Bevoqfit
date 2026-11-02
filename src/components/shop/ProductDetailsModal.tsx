@@ -62,7 +62,7 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
 
   const handleAddToCart = () => {
     addToCart(product, selectedSize, selectedColor, quantity);
-    showToast(`Added ${quantity}x ${product.name} (${selectedSize} / ${selectedColor.name}) to Bag!`);
+    showToast(`Added ${quantity}x ${product.name} (${selectedSize}) to Bag!`);
   };
 
   const handleBuyNow = () => {
@@ -77,7 +77,7 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[9994] flex items-center justify-center p-2 sm:p-4 md:p-6">
+      <div className="fixed inset-0 z-[9994] flex items-end sm:items-center justify-center p-0 sm:p-4 md:p-6">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -87,17 +87,18 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
           className="absolute inset-0 bg-black/85 backdrop-blur-md"
         />
 
-        {/* Modal Main Body */}
+        {/* Modal Main Body - Bottom sheet on mobile, centered modal on desktop */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 25 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.96, y: 25 }}
-          className="relative w-full max-w-5xl bg-[#0D0D0D] border border-white/20 z-10 text-white max-h-[94vh] overflow-y-auto shadow-2xl flex flex-col"
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 100 }}
+          transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+          className="relative w-full max-w-5xl bg-[#0D0D0D] border-t sm:border border-white/20 z-10 text-white max-h-[92vh] sm:max-h-[94vh] overflow-y-auto shadow-2xl flex flex-col rounded-t-2xl sm:rounded-none pb-24 sm:pb-0"
         >
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-20 p-2.5 bg-black/70 backdrop-blur-md border border-white/20 hover:border-white text-white transition-colors"
+            className="absolute top-4 right-4 z-20 p-2 sm:p-2.5 bg-black/80 backdrop-blur-md border border-white/20 hover:border-white text-white transition-colors"
             aria-label="Close product view"
           >
             <X className="w-5 h-5" />
@@ -105,38 +106,38 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
 
           {/* Main Grid: Gallery (Left) & Purchasing Info (Right) */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-0 border-b border-white/10">
-            {/* Gallery Section (7 cols on md) */}
-            <div className="md:col-span-7 p-6 sm:p-8 bg-[#101010] flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/10">
+            {/* Gallery Section */}
+            <div className="md:col-span-7 p-4 sm:p-8 bg-[#101010] flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/10">
               {/* Primary High-Resolution Display Stage */}
-              <div className="relative aspect-[3/4] w-full bg-[#181818] overflow-hidden border border-white/10 group">
+              <div className="relative aspect-[3/4] w-full bg-[#181818] overflow-hidden border border-white/10">
                 <img
                   src={product.images[activeImageIndex] || product.images[0]}
                   alt={`${product.name} view ${activeImageIndex + 1}`}
-                  className="w-full h-full object-cover grayscale contrast-125 transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover grayscale contrast-125 transition-transform duration-500"
                 />
 
                 {/* Badge */}
                 {product.badge && (
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="px-3 py-1 bg-white text-black text-[10px] font-mono-tech font-bold uppercase tracking-widest">
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
+                    <span className="px-2.5 py-1 bg-white text-black text-[9px] sm:text-[10px] font-mono-tech font-bold uppercase tracking-widest">
                       {product.badge}
                     </span>
                   </div>
                 )}
 
                 {/* GSM Spec Overlay */}
-                <div className="absolute bottom-4 left-4 z-10 bg-black/80 backdrop-blur-md px-3 py-1 border border-white/20 text-[10px] font-mono-tech uppercase tracking-wider text-neutral-300">
+                <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10 bg-black/80 backdrop-blur-md px-2.5 py-1 border border-white/20 text-[9px] sm:text-[10px] font-mono-tech uppercase tracking-wider text-neutral-300">
                   {product.gsm} GSM • {product.fit}
                 </div>
               </div>
 
-              {/* Angle Thumbnails Picker */}
-              <div className="flex gap-3 mt-4 overflow-x-auto no-scrollbar py-1">
+              {/* Angle Thumbnails */}
+              <div className="flex gap-2 sm:gap-3 mt-3 sm:mt-4 overflow-x-auto no-scrollbar py-1">
                 {product.images.map((imgUrl, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`relative w-20 h-24 shrink-0 bg-neutral-900 border transition-all ${
+                    className={`relative w-16 h-20 sm:w-20 sm:h-24 shrink-0 bg-neutral-900 border transition-all ${
                       activeImageIndex === idx
                         ? 'border-white scale-100 ring-1 ring-white'
                         : 'border-white/20 opacity-60 hover:opacity-100'
@@ -155,8 +156,8 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
               </div>
             </div>
 
-            {/* Product Details Section (5 cols on md) */}
-            <div className="md:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            {/* Product Purchasing Info */}
+            <div className="md:col-span-5 p-5 sm:p-8 flex flex-col justify-between space-y-5 sm:space-y-6">
               <div>
                 {/* Category & Rating */}
                 <div className="flex items-center justify-between text-xs font-mono-tech text-neutral-400 mb-2">
@@ -164,7 +165,7 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
                   <div className="flex items-center gap-1.5 text-white">
                     <Star className="w-3.5 h-3.5 fill-white" />
                     <span>{product.rating}</span>
-                    <span className="text-neutral-500">({product.reviewsCount} reviews)</span>
+                    <span className="text-neutral-500">({product.reviewsCount})</span>
                   </div>
                 </div>
 
@@ -174,32 +175,32 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
                 </h1>
 
                 {/* Price Bar */}
-                <div className="flex items-baseline gap-3 mt-3 pb-4 border-b border-white/10 font-mono-tech">
-                  <span className="text-2xl font-bold text-white">
+                <div className="flex items-baseline gap-3 mt-2.5 pb-3 border-b border-white/10 font-mono-tech">
+                  <span className="text-xl sm:text-2xl font-bold text-white">
                     ₹{product.price.toLocaleString('en-IN')}
                   </span>
                   {product.originalPrice && (
-                    <span className="text-sm text-neutral-500 line-through">
+                    <span className="text-xs sm:text-sm text-neutral-500 line-through">
                       ₹{product.originalPrice.toLocaleString('en-IN')}
                     </span>
                   )}
-                  <span className="text-[10px] uppercase text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5">
-                    IN STOCK • SHIPS IN 24H
+                  <span className="text-[9px] uppercase text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5">
+                    IN STOCK
                   </span>
                 </div>
 
                 {/* Description */}
-                <p className="text-xs text-neutral-300 font-sans leading-relaxed mt-4">
+                <p className="text-xs text-neutral-300 font-sans leading-relaxed mt-3">
                   {product.description}
                 </p>
 
                 {/* Color Selection */}
-                <div className="mt-6">
+                <div className="mt-5">
                   <div className="flex justify-between text-xs font-mono-tech uppercase text-neutral-400 mb-2">
                     <span>COLOR:</span>
                     <span className="text-white font-bold">{selectedColor.name}</span>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {product.colors.map((color) => (
                       <button
                         key={color.name}
@@ -221,9 +222,9 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
                 </div>
 
                 {/* Size Selection with Size Guide Trigger */}
-                <div className="mt-6">
+                <div className="mt-5">
                   <div className="flex justify-between items-center text-xs font-mono-tech uppercase mb-2">
-                    <span className="text-neutral-400">SELECT SIZE:</span>
+                    <span className="text-neutral-400">SELECT OVERSIZED SIZE:</span>
                     <button
                       onClick={onOpenSizeGuide}
                       className="text-neutral-300 hover:text-white underline underline-offset-4 flex items-center gap-1"
@@ -232,14 +233,14 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
                       <span>SIZE GUIDE</span>
                     </button>
                   </div>
-                  <div className="grid grid-cols-5 gap-2">
+                  <div className="grid grid-cols-5 gap-1.5 sm:gap-2">
                     {product.sizes.map((size) => (
                       <button
                         key={size}
                         onClick={() => setSelectedSize(size)}
-                        className={`py-2.5 border font-mono-tech text-xs font-bold uppercase transition-all ${
+                        className={`py-2.5 sm:py-3 border font-mono-tech text-xs font-bold uppercase transition-all ${
                           selectedSize === size
-                            ? 'bg-white text-black border-white'
+                            ? 'bg-white text-black border-white shadow-lg'
                             : 'bg-transparent text-neutral-300 border-white/20 hover:border-white'
                         }`}
                       >
@@ -249,30 +250,8 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
                   </div>
                 </div>
 
-                {/* Quantity Stepper */}
-                <div className="mt-6 flex items-center gap-4">
-                  <span className="text-xs font-mono-tech uppercase text-neutral-400">QUANTITY:</span>
-                  <div className="flex items-center border border-white/20">
-                    <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="px-3 py-1.5 text-neutral-400 hover:text-white"
-                    >
-                      -
-                    </button>
-                    <span className="px-4 text-xs font-mono-tech font-bold text-white">
-                      {quantity}
-                    </span>
-                    <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="px-3 py-1.5 text-neutral-400 hover:text-white"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-
-                {/* Actions: Add to Bag + Buy Now + Wishlist */}
-                <div className="mt-6 space-y-2.5">
+                {/* Desktop Actions */}
+                <div className="hidden sm:block mt-6 space-y-2.5">
                   <div className="flex gap-2">
                     <button
                       onClick={handleAddToCart}
@@ -301,38 +280,22 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
 
                   <button
                     onClick={handleBuyNow}
-                    className="w-full py-3.5 bg-neutral-900 border border-white/30 text-white font-mono-tech font-bold text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-2 hover:bg-white hover:text-black hover:border-white transition-all duration-200"
+                    className="w-full py-3 bg-neutral-900 border border-white/30 text-white font-mono-tech font-bold text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-2 hover:bg-white hover:text-black hover:border-white transition-all duration-200"
                   >
-                    <span>BUY IT NOW • EXPRESS CHECKOUT</span>
+                    <span>EXPRESS CHECKOUT</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
-                </div>
-              </div>
-
-              {/* Guarantees */}
-              <div className="pt-4 border-t border-white/10 grid grid-cols-3 gap-2 text-[10px] font-mono-tech text-neutral-400">
-                <div className="flex items-center gap-1.5">
-                  <Truck className="w-3.5 h-3.5 text-neutral-300" />
-                  <span>FREE SHIPPING</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <RefreshCw className="w-3.5 h-3.5 text-neutral-300" />
-                  <span>7-DAY EXCHANGES</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Shield className="w-3.5 h-3.5 text-neutral-300" />
-                  <span>100% AUTHENTIC</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Collapsible Tabs: Specification, Details, Care Instructions */}
-          <div className="p-6 sm:p-8 bg-[#0B0B0B] border-b border-white/10">
-            <div className="flex border-b border-white/10 gap-6 text-xs font-mono-tech uppercase tracking-wider mb-4">
+          {/* Specifications, Fabric & Details */}
+          <div className="p-4 sm:p-8 bg-[#0B0B0B] border-b border-white/10">
+            <div className="flex border-b border-white/10 gap-4 sm:gap-6 text-xs font-mono-tech uppercase tracking-wider mb-4 overflow-x-auto no-scrollbar">
               <button
                 onClick={() => setActiveTab('details')}
-                className={`pb-2 transition-colors relative ${
+                className={`pb-2 whitespace-nowrap transition-colors relative ${
                   activeTab === 'details' ? 'text-white font-bold' : 'text-neutral-500 hover:text-neutral-300'
                 }`}
               >
@@ -343,7 +306,7 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
               </button>
               <button
                 onClick={() => setActiveTab('shipping')}
-                className={`pb-2 transition-colors relative ${
+                className={`pb-2 whitespace-nowrap transition-colors relative ${
                   activeTab === 'shipping' ? 'text-white font-bold' : 'text-neutral-500 hover:text-neutral-300'
                 }`}
               >
@@ -354,7 +317,7 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
               </button>
               <button
                 onClick={() => setActiveTab('care')}
-                className={`pb-2 transition-colors relative ${
+                className={`pb-2 whitespace-nowrap transition-colors relative ${
                   activeTab === 'care' ? 'text-white font-bold' : 'text-neutral-500 hover:text-neutral-300'
                 }`}
               >
@@ -375,10 +338,10 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
                     </li>
                   ))}
                 </ul>
-                <div className="p-4 bg-white/5 border border-white/10 space-y-2">
-                  <p className="text-white font-bold uppercase">FABRIC MANIFESTO:</p>
+                <div className="p-3 sm:p-4 bg-white/5 border border-white/10 space-y-1.5">
+                  <p className="text-white font-bold uppercase">OVERSIZED MANIFESTO:</p>
                   <p className="text-neutral-400">{product.fabric}</p>
-                  <p className="text-neutral-400">WEIGHT: {product.gsm} GSM HEAVY GAUGE</p>
+                  <p className="text-neutral-400">WEIGHT: {product.gsm} GSM HEAVYWEIGHT</p>
                   <p className="text-neutral-400">FIT: {product.fit}</p>
                 </div>
               </div>
@@ -386,56 +349,49 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
 
             {activeTab === 'shipping' && (
               <div className="text-xs font-mono-tech text-neutral-300 leading-relaxed max-w-2xl space-y-2">
-                <p>• All orders are dispatched within 24 hours from our Mumbai fulfillment center.</p>
-                <p>• Complimentary express shipping on all domestic orders above ₹1,999.</p>
-                <p>• Flat rate ₹149 for standard orders below ₹1,999.</p>
-                <p>• Unworn garments with intact security tags may be exchanged within 7 days of delivery.</p>
+                <p>• Dispatched within 24 hours from Mumbai fulfillment center.</p>
+                <p>• Free express shipping on domestic orders over ₹1,999.</p>
+                <p>• Unworn items with security tags eligible for 7-day exchanges.</p>
               </div>
             )}
 
             {activeTab === 'care' && (
               <div className="text-xs font-mono-tech text-neutral-300 leading-relaxed max-w-2xl space-y-2">
-                <p>• Machine wash cold (30°C max) inside out with like monochrome garments.</p>
-                <p>• Do not tumble dry. Hang dry in shade to maintain the structural 280 GSM shape.</p>
-                <p>• Iron on reverse at medium heat. Avoid direct high-heat contact with branding insignia.</p>
-                <p>• Do not bleach or use chlorine-based optical brighteners.</p>
+                <p>• Machine wash cold (30°C max) inside out with dark colors.</p>
+                <p>• Hang dry in shade to preserve structural 280 GSM shape.</p>
+                <p>• Iron on reverse at medium heat.</p>
               </div>
             )}
           </div>
 
-          {/* Related Products Bar */}
-          {relatedProducts.length > 0 && (
-            <div className="p-6 sm:p-8 bg-[#0D0D0D]">
-              <h3 className="text-xs font-mono-tech uppercase tracking-[0.25em] text-neutral-400 mb-4 font-bold">
-                COMPLETE THE CAPSULE
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {relatedProducts.map((rel) => (
-                  <div
-                    key={rel.id}
-                    onClick={() => onSelectRelated(rel)}
-                    className="group border border-white/10 p-3 hover:border-white transition-colors cursor-pointer flex items-center gap-3 bg-white/[0.02]"
-                  >
-                    <img
-                      src={rel.images[0]}
-                      alt={rel.name}
-                      className="w-16 h-20 object-cover grayscale contrast-125 border border-white/10 shrink-0"
-                    />
-                    <div className="truncate">
-                      <p className="text-[10px] font-mono-tech text-neutral-400 uppercase">{rel.categoryLabel}</p>
-                      <p className="text-xs font-bold text-white uppercase truncate">{rel.name}</p>
-                      <p className="text-xs font-mono-tech text-white font-bold mt-1">
-                        ₹{rel.price.toLocaleString('en-IN')}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          {/* Sticky Mobile Bottom Add Bar (Only on mobile devices for 1-tap conversion) */}
+          <div className="sm:hidden fixed bottom-0 inset-x-0 z-30 bg-[#0A0A0A]/95 backdrop-blur-md border-t border-white/20 p-3 flex gap-2 shadow-2xl">
+            <button
+              onClick={handleAddToCart}
+              className="flex-1 py-3.5 bg-white text-black font-mono-tech font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 active:scale-98"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              <span>ADD TO BAG (₹{product.price.toLocaleString('en-IN')})</span>
+            </button>
+
+            <button
+              onClick={() => {
+                const added = toggleWishlist(product);
+                showToast(
+                  added ? `Added to Wishlist` : `Removed from Wishlist`,
+                  added ? 'success' : 'info'
+                );
+              }}
+              className="p-3.5 border border-white/30 text-white active:scale-95"
+              aria-label="Wishlist"
+            >
+              <Heart
+                className={`w-4 h-4 ${isFavorited ? 'fill-white text-white' : 'text-neutral-300'}`}
+              />
+            </button>
+          </div>
         </motion.div>
       </div>
     </AnimatePresence>
   );
 };
-

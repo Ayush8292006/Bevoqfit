@@ -10,6 +10,7 @@ import { CinematicIntro } from './components/intro/CinematicIntro';
 
 import { AnnouncementBar } from './components/layout/AnnouncementBar';
 import { Navbar } from './components/layout/Navbar';
+import { MobileBottomNav } from './components/layout/MobileBottomNav';
 import { SearchModal } from './components/layout/SearchModal';
 import { CartDrawer } from './components/layout/CartDrawer';
 import { WishlistDrawer } from './components/layout/WishlistDrawer';
@@ -33,7 +34,7 @@ import { ProductDetailsModal } from './components/shop/ProductDetailsModal';
 
 export const AppContent: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#080808] text-[#F5F5F2] font-sans selection:bg-white selection:text-black relative">
+    <div className="min-h-screen bg-[#080808] text-[#F5F5F2] font-sans selection:bg-white selection:text-black relative pb-16 lg:pb-0">
       {/* Custom Desktop Streetwear Cursor */}
       <CustomCursor />
 
@@ -54,6 +55,9 @@ export const AppContent: React.FC = () => {
       {/* Top Banner & Sticky Navigation */}
       <AnnouncementBar />
       <Navbar />
+
+      {/* Native App-like Mobile Sticky Bottom Nav Bar */}
+      <MobileBottomNav />
 
       {/* Main 100% Oversized T-Shirt Experience */}
       <main>

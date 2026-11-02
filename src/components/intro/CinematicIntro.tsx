@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Volume2, VolumeX } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useUI } from '../../context/UIContext';
 
 export const CinematicIntro: React.FC = () => {
@@ -9,12 +9,6 @@ export const CinematicIntro: React.FC = () => {
 
   useEffect(() => {
     if (!showIntro) return;
-
-    // Sequence timings:
-    // Phase 1: 0 - 1.2s : Deep black + BEVOQFIT logo typography expand
-    // Phase 2: 1.2s - 2.4s : Line expansion + Tagline "WEAR YOUR ATTITUDE"
-    // Phase 3: 2.4s - 3.8s : Editorial Model Flash / Transition
-    // Phase 4: 3.8s - 4.6s : Smooth exit wipe into hero
 
     const t1 = setTimeout(() => setPhase(2), 1200);
     const t2 = setTimeout(() => setPhase(3), 2500);
@@ -37,16 +31,16 @@ export const CinematicIntro: React.FC = () => {
         exit={{ opacity: 0, transition: { duration: 0.9, ease: [0.77, 0, 0.175, 1] } }}
         className="fixed inset-0 z-[10000] bg-[#080808] flex items-center justify-center overflow-hidden cursor-default selection:bg-transparent"
       >
-        {/* Skip button in corner */}
+        {/* Skip button in corner - touch optimized */}
         <button
           onClick={finishIntro}
-          className="absolute top-8 right-8 z-30 flex items-center gap-2 text-[11px] font-mono-tech tracking-[0.25em] text-neutral-400 hover:text-white uppercase transition-all duration-300 border border-white/10 hover:border-white px-4 py-2 bg-black/40 backdrop-blur-md"
+          className="absolute top-4 right-4 sm:top-8 sm:right-8 z-30 flex items-center gap-2 text-[10px] sm:text-[11px] font-mono-tech tracking-[0.2em] sm:tracking-[0.25em] text-neutral-300 hover:text-white uppercase transition-all duration-300 border border-white/20 hover:border-white px-3 sm:px-4 py-2 bg-black/60 backdrop-blur-md active:scale-95"
         >
           <span>SKIP INTRO</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
 
-        {/* Ambient grain & dark gradient */}
+        {/* Ambient grain */}
         <div className="absolute inset-0 bg-grain pointer-events-none opacity-40" />
 
         {/* Phase 3 Background Flash: High-End Fashion Campaign Model */}
@@ -67,24 +61,24 @@ export const CinematicIntro: React.FC = () => {
         )}
 
         {/* Central Editorial Sequence */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 max-w-4xl">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 max-w-4xl w-full">
           {/* Subtle Edition Indicator */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 0.5, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-[10px] sm:text-xs font-mono-tech tracking-[0.35em] uppercase text-neutral-400 mb-6"
+            className="text-[9px] sm:text-xs font-mono-tech tracking-[0.3em] uppercase text-neutral-400 mb-4 sm:mb-6"
           >
-            EST. 2026 • CONTEMPORARY STREETWEAR
+            EST. 2026 • 100% OVERSIZED T-SHIRT ARCHIVE
           </motion.div>
 
           {/* Logo Typography Reveal */}
-          <div className="overflow-hidden py-2">
+          <div className="overflow-hidden py-2 w-full">
             <motion.h1
               initial={{ y: 90, letterSpacing: '0.02em', opacity: 0 }}
               animate={{
                 y: 0,
-                letterSpacing: phase >= 2 ? '0.18em' : '0.08em',
+                letterSpacing: phase >= 2 ? '0.14em' : '0.04em',
                 opacity: 1
               }}
               transition={{
@@ -92,18 +86,18 @@ export const CinematicIntro: React.FC = () => {
                 letterSpacing: { duration: 1.8, ease: 'easeOut' },
                 opacity: { duration: 0.6 }
               }}
-              className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-widest uppercase select-none"
+              className="font-display text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-widest uppercase select-none"
             >
               BEVOQFIT
             </motion.h1>
           </div>
 
           {/* Subtle Horizontal Expanding White Line */}
-          <div className="w-full flex justify-center my-6">
+          <div className="w-full flex justify-center my-4 sm:my-6">
             <motion.div
               initial={{ width: 0, opacity: 0 }}
               animate={{
-                width: phase >= 2 ? '280px' : '0px',
+                width: phase >= 2 ? '220px' : '0px',
                 opacity: phase >= 2 ? 0.8 : 0
               }}
               transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
@@ -120,7 +114,7 @@ export const CinematicIntro: React.FC = () => {
                 opacity: phase >= 2 ? 1 : 0
               }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-sm sm:text-lg md:text-xl uppercase tracking-[0.4em] text-neutral-300 font-semibold"
+              className="font-display text-xs sm:text-lg md:text-xl uppercase tracking-[0.3em] sm:tracking-[0.4em] text-neutral-300 font-semibold"
             >
               WEAR YOUR ATTITUDE.
             </motion.p>
@@ -131,7 +125,7 @@ export const CinematicIntro: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: phase >= 3 ? 0.7 : 0 }}
             transition={{ duration: 0.5 }}
-            className="mt-12 text-[10px] font-mono-tech tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2"
+            className="mt-8 sm:mt-12 text-[9px] sm:text-[10px] font-mono-tech tracking-[0.2em] text-neutral-500 uppercase flex items-center gap-2"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             <span>ENTERING SHOPPING EXPERIENCE</span>
@@ -139,17 +133,16 @@ export const CinematicIntro: React.FC = () => {
         </div>
 
         {/* Edge Frame Accents for Editorial Luxury */}
-        <div className="absolute top-6 left-6 text-[10px] font-mono-tech text-neutral-600 tracking-widest hidden sm:block">
+        <div className="absolute top-4 left-4 sm:top-6 sm:left-6 text-[9px] sm:text-[10px] font-mono-tech text-neutral-600 tracking-widest hidden sm:block">
           BEVOQFIT / EDITION 01
         </div>
-        <div className="absolute bottom-6 left-6 text-[10px] font-mono-tech text-neutral-600 tracking-widest hidden sm:block">
-          MONOCHROME UNIFORM
+        <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 text-[9px] sm:text-[10px] font-mono-tech text-neutral-600 tracking-widest hidden sm:block">
+          MONOCHROME OVERSIZED UNIFORM
         </div>
-        <div className="absolute bottom-6 right-6 text-[10px] font-mono-tech text-neutral-600 tracking-widest hidden sm:block">
+        <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 text-[9px] sm:text-[10px] font-mono-tech text-neutral-600 tracking-widest hidden sm:block">
           ALL RIGHTS RESERVED
         </div>
       </motion.div>
     </AnimatePresence>
   );
 };
-

@@ -33,10 +33,15 @@ import { TestimonialsSection } from './components/home/TestimonialsSection';
 import { NewsletterSection } from './components/home/NewsletterSection';
 
 import { ProductDetailsModal } from './components/shop/ProductDetailsModal';
+import { MobileHome } from './components/mobile/MobileHome';
+import { useIsMobile } from './hooks/useIsMobile';
 
 export const AppContent: React.FC = () => {
+  // Phones/tablets get a dedicated app-style home; laptops get the full editorial website.
+  const isMobile = useIsMobile();
+
   return (
-    <div className="min-h-screen bg-[#080808] text-[#F5F5F2] font-sans selection:bg-white selection:text-black relative pb-28 lg:pb-0">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip bg-[#080808] text-[#F5F5F2] font-sans selection:bg-white selection:text-black relative pb-[calc(60px+env(safe-area-inset-bottom))] lg:pb-0">
       {/* Custom Desktop Streetwear Cursor (Automatically disabled on touch screens) */}
       <CustomCursor />
 
@@ -54,14 +59,14 @@ export const AppContent: React.FC = () => {
       <SizeGuideModal />
       <ProductDetailsModal />
 
-      {/* Top Banner */}
-      <AnnouncementBar />
+      {/* Top Banner (desktop) */}
+      {!isMobile && <AnnouncementBar />}
 
       {/* Native In-App Mobile Header (Mobile only) */}
       <MobileAppHeader />
 
       {/* In-App Stories / Drop Highlights Row (Mobile only) */}
-      <MobileStoriesRow />
+      {isMobile && <MobileStoriesRow />}
 
       {/* Desktop Sticky Navigation Bar */}
       <Navbar />
@@ -69,6 +74,10 @@ export const AppContent: React.FC = () => {
       {/* Native App-like Mobile Sticky Bottom Navigation Bar */}
       <MobileBottomNav />
 
+      {isMobile ? (
+        <MobileHome />
+      ) : (
+      <>
       {/* Main 100% Oversized T-Shirt Experience */}
       <main>
         {/* Full-Screen Animated Hero Section */}
@@ -110,6 +119,8 @@ export const AppContent: React.FC = () => {
 
       {/* International Editorial Footer */}
       <Footer />
+      </>
+      )}
     </div>
   );
 };

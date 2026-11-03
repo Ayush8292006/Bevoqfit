@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Compass, Search, Heart, ShoppingBag } from 'lucide-react';
+import { Home, LayoutGrid, Search, Heart, ShoppingBag } from 'lucide-react';
 import { useUI } from '../../context/UIContext';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
@@ -7,71 +7,53 @@ import { useWishlist } from '../../context/WishlistContext';
 export const MobileBottomNav: React.FC = () => {
   const { totalItems } = useCart();
   const { totalWishlist } = useWishlist();
-  const { setIsCartOpen, setIsWishlistOpen, setIsSearchOpen, scrollToShop } = useUI();
+  const {
+    isCartOpen, setIsCartOpen,
+    isWishlistOpen, setIsWishlistOpen,
+    isSearchOpen, setIsSearchOpen,
+    scrollToShop,
+  } = useUI();
+
+  const closeAll = () => {
+    setIsCartOpen(false);
+    setIsWishlistOpen(false);
+    setIsSearchOpen(false);
+  };
+
+  const tabs = [
+    { label: 'Home', icon: Home, active: !isCartOpen && !isWishlistOpen && !isSearchOpen,
+      onClick: () => { closeAll(); window.scrollTo({ top: 0, behavior: 'smooth' }); } },
+    { label: 'Shop', icon: LayoutGrid, active: false, onClick: () => { closeAll(); scrollToShop(); } },
+    { label: 'Search', icon: Search, active: isSearchOpen, onClick: () => { closeAll(); setIsSearchOpen(true); } },
+    { label: 'Saved', icon: Heart, active: isWishlistOpen, badge: totalWishlist,
+      onClick: () => { closeAll(); setIsWishlistOpen(true); } },
+    { label: 'Bag', icon: ShoppingBag, active: isCartOpen, badge: totalItems,
+      onClick: () => { closeAll(); setIsCartOpen(true); } },
+  ];
 
   return (
-    <nav className="lg:hidden fixed bottom-0 inset-x-0 z-40 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pointer-events-none">
-      <div className="pointer-events-auto flex items-center justify-around bg-[#111111]/90 backdrop-blur-2xl border border-white/10 rounded-[22px] px-1.5 py-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.9)]">
-        {/* Home */}
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl text-neutral-400 active:bg-white/10 active:scale-95 transition-all"
-        >
-          <Home className="w-5 h-5 mb-0.5" />
-          <span className="text-[9px] font-mono-tech tracking-wider uppercase">HOME</span>
-        </button>
-
-        {/* Discover / Shop */}
-        <button
-          onClick={scrollToShop}
-          className="flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl text-neutral-400 active:bg-white/10 active:scale-95 transition-all"
-        >
-          <Compass className="w-5 h-5 mb-0.5" />
-          <span className="text-[9px] font-mono-tech tracking-wider uppercase">ARCHIVE</span>
-        </button>
-
-        {/* Search */}
-        <button
-          onClick={() => setIsSearchOpen(true)}
-          className="flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl text-neutral-400 active:bg-white/10 active:scale-95 transition-all"
-        >
-          <Search className="w-5 h-5 mb-0.5" />
-          <span className="text-[9px] font-mono-tech tracking-wider uppercase">SEARCH</span>
-        </button>
-
-        {/* Wishlist */}
-        <button
-          onClick={() => setIsWishlistOpen(true)}
-          className="flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl text-neutral-400 active:bg-white/10 active:scale-95 transition-all relative"
-        >
-          <div className="relative">
-            <Heart className="w-5 h-5 mb-0.5" />
-            {totalWishlist > 0 && (
-              <span className="absolute -top-1 -right-2 w-4 h-4 bg-white text-black text-[9px] font-bold rounded-full flex items-center justify-center font-mono-tech">
-                {totalWishlist}
-              </span>
-            )}
-          </div>
-          <span className="text-[9px] font-mono-tech tracking-wider uppercase">SAVED</span>
-        </button>
-
-        {/* Cart Bag */}
-        <button
-          onClick={() => setIsCartOpen(true)}
-          className="flex-1 flex flex-col items-center justify-center py-1.5 rounded-2xl bg-white text-black active:bg-neutral-200 active:scale-95 transition-all relative"
-        >
-          <div className="relative">
-            <ShoppingBag className="w-5 h-5 mb-0.5 text-black" />
-            {totalItems > 0 && (
-              <span className="absolute -top-1 -right-2 w-4 h-4 bg-black text-white text-[9px] font-bold rounded-full flex items-center justify-center font-mono-tech">
-                {totalItems}
-              </span>
-            )}
-          </div>
-          <span className="text-[9px] font-mono-tech tracking-wider uppercase text-black font-bold">BAG</span>
-        </button>
+    <nav className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-[#0B0B0B]/90 backdrop-blur-2xl border-t border-white/[0.08] pb-[env(safe-area-inset-bottom)]">
+      <div className="flex h-[60px] items-stretch">
+        {tabs.map(({ label, icon: Icon, active, badge, onClick }) => (
+          <button
+            key={label}
+            onClick={onClick}
+            className={`relative flex flex-1 flex-col items-center justify-center gap-1 active:opacity-60 transition-colors ${
+              active ? 'text-white' : 'text-neutral-500'
+            }`}
+          >
+            <span className="relative">
+              <Icon className={`h-[22px] w-[22px] ${active ? 'stroke-[2.4]' : 'stroke-[1.8]'}`} />
+              {!!badge && (
+                <span className="absolute -right-2 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[9px] font-bold text-black">
+                  {badge}
+                </span>
+              )}
+            </span>
+            <span className={`text-[10px] ${active ? 'font-semibold' : 'font-medium'}`}>{label}</span>
+          </button>
+        ))}
       </div>
     </nav>
   );
 };
-

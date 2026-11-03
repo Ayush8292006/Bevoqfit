@@ -9,6 +9,10 @@
   }
 
   html {
+    /* Never let any wide element widen the page on phones (prevents the zoomed-out look) */
+    overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100%;
     color-scheme: dark;
     background-color: #080808;
     color: #F5F5F2;
@@ -19,6 +23,9 @@
 
   body {
     overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100%;
+    overflow-wrap: break-word;
     background-color: #080808;
     font-family: 'Plus Jakarta Sans', sans-serif;
     -webkit-font-smoothing: antialiased;

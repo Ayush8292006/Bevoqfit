@@ -36,7 +36,7 @@ import { ProductDetailsModal } from './components/shop/ProductDetailsModal';
 
 export const AppContent: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#080808] text-[#F5F5F2] font-sans selection:bg-white selection:text-black relative pb-20 lg:pb-0">
+    <div className="min-h-screen bg-[#080808] text-[#F5F5F2] font-sans selection:bg-white selection:text-black relative pb-28 lg:pb-0">
       {/* Custom Desktop Streetwear Cursor (Automatically disabled on touch screens) */}
       <CustomCursor />
 

@@ -23,10 +23,10 @@ export const ShopTheLookSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-[#080808] border-b border-white/10">
+    <section className="py-10 lg:py-24 bg-[#080808] border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 lg:gap-4 mb-6 lg:mb-12">
           <div>
             <div className="text-xs font-mono-tech uppercase tracking-[0.3em] text-neutral-400 mb-2 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-white" />
@@ -38,7 +38,7 @@ export const ShopTheLookSection: React.FC = () => {
           </div>
 
           {/* Lookbook navigation tabs */}
-          <div className="flex border border-white/20 p-1 bg-[#121212]">
+          <div className="flex border border-white/20 p-1 bg-[#121212] rounded-full lg:rounded-none self-start">
             {LOOKBOOK_LOOKS.map((look, idx) => (
               <button
                 key={look.id}
@@ -46,7 +46,7 @@ export const ShopTheLookSection: React.FC = () => {
                   setSelectedLookIndex(idx);
                   setActiveHotspotId(look.hotspots[0]?.id || null);
                 }}
-                className={`px-4 py-2 text-xs font-mono-tech uppercase tracking-wider transition-all ${
+                className={`px-4 py-2 rounded-full lg:rounded-none text-xs font-mono-tech uppercase tracking-wider transition-all ${
                   selectedLookIndex === idx
                     ? 'bg-white text-black font-bold'
                     : 'text-neutral-400 hover:text-white'
@@ -59,9 +59,9 @@ export const ShopTheLookSection: React.FC = () => {
         </div>
 
         {/* Interactive Lookbook Canvas */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center">
           {/* Large Image with Interactive Pulsing Hotspots (8 cols) */}
-          <div className="lg:col-span-8 relative aspect-[4/5] sm:aspect-[16/10] bg-[#121212] border border-white/15 overflow-hidden">
+          <div className="lg:col-span-8 relative aspect-[4/5] sm:aspect-[16/10] bg-[#121212] border border-white/15 overflow-hidden rounded-3xl lg:rounded-none">
             <img
               src={currentLook.image}
               alt={currentLook.title}
@@ -103,7 +103,7 @@ export const ShopTheLookSection: React.FC = () => {
                         initial={{ opacity: 0, scale: 0.9, y: 10 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 10 }}
-                        className="absolute bottom-10 left-1/2 -translate-x-1/2 w-64 bg-[#0F0F0F] border border-white/30 p-3 shadow-2xl z-30"
+                        className="absolute bottom-10 left-1/2 -translate-x-1/2 w-56 sm:w-64 bg-[#0F0F0F] border border-white/30 p-3 shadow-2xl z-30"
                       >
                         <div className="flex gap-3 items-center">
                           <img
@@ -147,7 +147,7 @@ export const ShopTheLookSection: React.FC = () => {
           </div>
 
           {/* Look Details Sidebar (4 cols) */}
-          <div className="lg:col-span-4 p-8 bg-[#121212] border border-white/15 h-full flex flex-col justify-between space-y-6">
+          <div className="lg:col-span-4 p-5 lg:p-8 bg-[#121212] border border-white/15 rounded-3xl lg:rounded-none h-full flex flex-col justify-between space-y-6">
             <div>
               <span className="text-xs font-mono-tech uppercase tracking-[0.25em] text-neutral-400">
                 {currentLook.subtitle}

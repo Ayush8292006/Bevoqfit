@@ -14,7 +14,7 @@ export const MobileAppHeader: React.FC = () => {
   };
 
   return (
-    <div className="lg:hidden sticky top-0 z-40 bg-[#080808]/95 backdrop-blur-xl border-b border-white/10 px-4 py-3 flex items-center justify-between">
+    <header className="lg:hidden sticky top-0 z-40 bg-[#080808]/90 backdrop-blur-xl border-b border-white/10 px-4 h-[61px] flex items-center justify-between">
       {/* Brand Logotype + App Status Pill */}
       <div className="flex items-center gap-2.5">
         <button
@@ -39,7 +39,7 @@ export const MobileAppHeader: React.FC = () => {
         {/* Search */}
         <button
           onClick={() => setIsSearchOpen(true)}
-          className="p-2 text-neutral-300 active:text-white active:scale-90 transition-transform"
+          className="w-9 h-9 flex items-center justify-center rounded-full bg-white/[0.06] border border-white/10 text-neutral-200 active:scale-90 transition-transform"
           aria-label="Search"
         >
           <Search className="w-4 h-4" />
@@ -48,17 +48,17 @@ export const MobileAppHeader: React.FC = () => {
         {/* In-App Drop Notifications Bell */}
         <button
           onClick={handleNotificationClick}
-          className="p-2 text-neutral-300 active:text-white active:scale-90 transition-transform relative"
+          className="w-9 h-9 flex items-center justify-center rounded-full bg-white/[0.06] border border-white/10 text-neutral-200 active:scale-90 transition-transform relative"
           aria-label="Drop Alerts"
         >
           <Bell className="w-4 h-4" />
-          <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+          <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
         </button>
 
         {/* Bag with counter */}
         <button
           onClick={() => setIsCartOpen(true)}
-          className="p-2 text-white active:scale-90 transition-transform relative"
+          className="w-9 h-9 flex items-center justify-center rounded-full bg-white/[0.06] border border-white/10 text-white active:scale-90 transition-transform relative"
           aria-label="Bag"
         >
           <ShoppingBag className="w-4 h-4" />
@@ -69,7 +69,7 @@ export const MobileAppHeader: React.FC = () => {
           )}
         </button>
       </div>
-    </div>
+    </header>
   );
 };
 

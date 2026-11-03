@@ -131,7 +131,7 @@ export const MobileStoriesRow: React.FC = () => {
   return (
     <>
       {/* Mobile In-App Stories / Drop Highlights Row (Visible on Mobile & Tablet) */}
-      <div className="lg:hidden bg-[#0A0A0A] border-b border-white/10 py-3 px-3 overflow-hidden">
+      <div className="lg:hidden bg-[#080808] pt-3 pb-1 px-3 overflow-hidden">
         <div className="flex items-center gap-3 overflow-x-auto no-scrollbar">
           {stories.map((story, idx) => (
             <button
@@ -169,7 +169,7 @@ export const MobileStoriesRow: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[10005] bg-black flex flex-col justify-between overflow-hidden"
+            className="fixed inset-0 z-[10005] bg-black flex flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] justify-between overflow-hidden"
           >
             {/* Background Story Image */}
             <div className="absolute inset-0 z-0">
@@ -248,7 +248,7 @@ export const MobileStoriesRow: React.FC = () => {
 
               <button
                 onClick={handleShopCurrentStory}
-                className="w-full py-4 bg-white text-black font-mono-tech text-xs uppercase font-bold tracking-[0.2em] flex items-center justify-center gap-2 shadow-2xl active:scale-98"
+                className="w-full py-4 rounded-full bg-white text-black font-mono-tech text-xs uppercase font-bold tracking-[0.2em] flex items-center justify-center gap-2 shadow-2xl active:scale-98"
               >
                 <span>SHOP THIS OVERSIZED TEE</span>
                 <ArrowRight className="w-4 h-4" />

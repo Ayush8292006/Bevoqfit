@@ -106,7 +106,7 @@ export const InteractiveFitVisualizer: React.FC = () => {
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-[#050505] border-b border-white/10 relative overflow-hidden">
+    <section className="py-10 lg:py-24 bg-[#050505] border-b border-white/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-12 pb-6 border-b border-white/10">

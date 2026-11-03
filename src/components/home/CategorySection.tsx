@@ -49,10 +49,10 @@ export const CategorySection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-[#080808] border-b border-white/10">
+    <section className="py-10 lg:py-24 bg-[#080808] border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 lg:gap-4 mb-6 lg:mb-12">
           <div>
             <div className="text-xs font-mono-tech uppercase tracking-[0.3em] text-neutral-400 mb-2 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
@@ -62,20 +62,20 @@ export const CategorySection: React.FC = () => {
               SHOP BY OVERSIZED CUT
             </h2>
           </div>
-          <p className="text-xs font-mono-tech text-neutral-400 max-w-xs uppercase tracking-wider">
+          <p className="hidden sm:block text-xs font-mono-tech text-neutral-400 max-w-xs uppercase tracking-wider">
             Engineered drop-shoulder boxy cuts crafted exclusively from 240–300 GSM heavyweight cotton.
           </p>
         </div>
 
         {/* 3 Large Animated Visual Category Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="snap-row gap-3 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-6">
           {categories.map((cat, idx) => (
             <motion.div
               key={cat.title}
               whileHover={{ y: -6 }}
               transition={{ duration: 0.3 }}
               onClick={() => handleCategorySelect(cat.category)}
-              className="group relative h-[480px] sm:h-[540px] md:h-[600px] overflow-hidden bg-[#121212] border border-white/15 hover:border-white cursor-pointer transition-all duration-500 flex flex-col justify-between p-6 sm:p-8 shadow-xl"
+              className="group relative w-[78%] sm:w-[60%] md:w-auto shrink-0 h-[360px] sm:h-[480px] md:h-[600px] overflow-hidden bg-[#121212] border border-white/15 rounded-3xl md:rounded-none hover:border-white cursor-pointer transition-all duration-500 flex flex-col justify-between p-5 sm:p-8 shadow-xl"
             >
               {/* Background Image with Zoom on Hover */}
               <div className="absolute inset-0 z-0 overflow-hidden">
@@ -90,10 +90,10 @@ export const CategorySection: React.FC = () => {
 
               {/* Top Meta info */}
               <div className="relative z-10 flex items-center justify-between text-xs font-mono-tech uppercase tracking-widest text-neutral-400">
-                <span className="px-2.5 py-1 bg-black/80 backdrop-blur-md border border-white/20 text-white font-bold">
+                <span className="px-2.5 py-1 whitespace-nowrap rounded-full md:rounded-none bg-black/80 backdrop-blur-md border border-white/20 text-white font-bold">
                   {cat.gsmBadge}
                 </span>
-                <span className="px-2 py-0.5 bg-black/60 backdrop-blur-md border border-white/20 text-[10px]">
+                <span className="hidden sm:inline px-2 py-0.5 bg-black/60 backdrop-blur-md border border-white/20 text-[10px]">
                   {cat.itemCount}
                 </span>
               </div>
@@ -105,7 +105,7 @@ export const CategorySection: React.FC = () => {
                 </p>
 
                 <div className="flex items-end justify-between">
-                  <h3 className="text-2xl sm:text-3xl font-display font-black uppercase tracking-tight text-white leading-tight group-hover:tracking-wider transition-all duration-300">
+                  <h3 className="text-xl sm:text-3xl font-display font-black uppercase tracking-tight text-white leading-tight group-hover:tracking-wider transition-all duration-300">
                     {cat.title}
                   </h3>
 

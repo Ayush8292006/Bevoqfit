@@ -4,10 +4,10 @@ import { CUSTOMER_REVIEWS } from '../../data/products';
 
 export const TestimonialsSection: React.FC = () => {
   return (
-    <section className="py-24 bg-[#0A0A0A] border-b border-white/10">
+    <section className="py-10 lg:py-24 bg-[#0A0A0A] border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-left md:text-center max-w-2xl mx-auto mb-6 lg:mb-16">
           <div className="text-xs font-mono-tech uppercase tracking-[0.3em] text-neutral-400 mb-2 flex items-center justify-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-white" />
             <span>VERIFIED BUYER EXPERIENCES</span>
@@ -18,11 +18,11 @@ export const TestimonialsSection: React.FC = () => {
         </div>
 
         {/* 3 Review Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="snap-row gap-3 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-6">
           {CUSTOMER_REVIEWS.map((rev) => (
             <div
               key={rev.id}
-              className="p-8 bg-[#121212] border border-white/10 hover:border-white/40 transition-colors flex flex-col justify-between"
+              className="w-[85%] sm:w-[60%] md:w-auto shrink-0 rounded-3xl md:rounded-none p-6 md:p-8 bg-[#121212] border border-white/10 hover:border-white/40 transition-colors flex flex-col justify-between"
             >
               <div>
                 {/* Rating Stars */}

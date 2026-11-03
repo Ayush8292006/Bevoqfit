@@ -59,10 +59,10 @@ export const HorizontalCampaignSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-[#050505] border-b border-white/10 overflow-hidden">
+    <section className="py-10 lg:py-24 bg-[#050505] border-b border-white/10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex items-end justify-between mb-8">
+        <div className="flex items-end justify-between mb-6 lg:mb-8">
           <div>
             <div className="text-xs font-mono-tech uppercase tracking-[0.3em] text-neutral-400 mb-2 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-white" />
@@ -74,7 +74,7 @@ export const HorizontalCampaignSection: React.FC = () => {
           </div>
 
           {/* Manual Scroll Arrows */}
-          <div className="flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2">
             <button
               onClick={() => scroll('left')}
               className="p-3 border border-white/20 hover:border-white text-white hover:bg-white/10 transition-colors"
@@ -96,13 +96,13 @@ export const HorizontalCampaignSection: React.FC = () => {
       {/* Horizontal Carousel Track */}
       <div
         ref={scrollContainerRef}
-        className="flex gap-6 overflow-x-auto no-scrollbar px-4 sm:px-6 lg:px-8 scroll-smooth"
+        className="snap-row gap-3 md:gap-6 px-4 sm:px-6 lg:px-8 scroll-px-4 scroll-smooth"
       >
         {campaignPanels.map((panel, idx) => (
           <div
             key={panel.id}
             onClick={() => handleCardClick(panel.productId)}
-            className="group relative w-[300px] sm:w-[380px] md:w-[440px] h-[520px] shrink-0 bg-[#101010] border border-white/10 hover:border-white transition-all duration-300 cursor-pointer overflow-hidden flex flex-col justify-between p-6"
+            className="group relative w-[80%] sm:w-[380px] md:w-[440px] h-[420px] md:h-[520px] shrink-0 bg-[#101010] border border-white/10 rounded-3xl md:rounded-none hover:border-white transition-all duration-300 cursor-pointer overflow-hidden flex flex-col justify-between p-6"
           >
             {/* Background Photography */}
             <div className="absolute inset-0 z-0 overflow-hidden">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useIsMobile } from '../../hooks/useIsMobile';
 import { X, Heart, Trash2, ArrowRight } from 'lucide-react';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
@@ -7,6 +8,7 @@ import { useUI } from '../../context/UIContext';
 import { Product } from '../../types';
 
 export const WishlistDrawer: React.FC = () => {
+  const isMobile = useIsMobile();
   const { items, totalWishlist, toggleWishlist } = useWishlist();
   const { addToCart } = useCart();
   const { isWishlistOpen, setIsWishlistOpen, openProductModal, scrollToShop, showToast } = useUI();
@@ -20,7 +22,7 @@ export const WishlistDrawer: React.FC = () => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[9996] flex justify-end">
+      <div className="fixed inset-0 z-[9996] flex items-end lg:items-stretch justify-end">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -32,12 +34,14 @@ export const WishlistDrawer: React.FC = () => {
 
         {/* Drawer panel */}
         <motion.div
-          initial={{ x: '100%' }}
-          animate={{ x: 0 }}
-          exit={{ x: '100%' }}
+          initial={isMobile ? { y: '100%' } : { x: '100%' }}
+          animate={isMobile ? { y: 0 } : { x: 0 }}
+          exit={isMobile ? { y: '100%' } : { x: '100%' }}
           transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-          className="relative w-full max-w-md bg-[#0D0D0D] border-l border-white/10 h-full flex flex-col z-10 text-white shadow-2xl"
+          className="relative w-full lg:max-w-md bg-[#0D0D0D] border-t lg:border-t-0 lg:border-l border-white/10 h-[88vh] lg:h-full rounded-t-[28px] lg:rounded-none overflow-hidden flex flex-col z-10 text-white shadow-2xl pb-[env(safe-area-inset-bottom)]"
         >
+          {/* Mobile sheet grabber */}
+          <div className="lg:hidden flex justify-center pt-2.5 pb-1"><span className="w-10 h-1 rounded-full bg-white/25" /></div>
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
             <div className="flex items-center gap-3">

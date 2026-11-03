@@ -22,7 +22,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       onMouseMove={handleMouseMove}
-      className="relative min-h-[95vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-[#080808] border-b border-white/10"
+      className="relative mx-3 mt-3 rounded-[28px] border border-white/10 lg:mx-0 lg:mt-0 lg:rounded-none lg:border-0 lg:border-b min-h-[72vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-[#080808]"
     >
       {/* Background Campaign Photography Layer with Parallax */}
       <motion.div
@@ -52,7 +52,7 @@ export const HeroSection: React.FC = () => {
       </motion.div>
 
       {/* Floating Animated Avant-Garde Background Watermark */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 pointer-events-none select-none overflow-hidden z-0 opacity-15">
+      <div className="hidden lg:block absolute inset-x-0 top-1/2 -translate-y-1/2 pointer-events-none select-none overflow-hidden z-0 opacity-15">
         <motion.span
           animate={{ x: [0, -40, 0] }}
           transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
@@ -63,7 +63,7 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* Main Hero Content Layer */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 w-full flex flex-col justify-between min-h-[85vh]">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-20 w-full flex flex-col justify-between min-h-[72vh] lg:min-h-[85vh]">
         {/* Top Campaign Stamp with Animated Pulse Badge */}
         <div className="flex items-center justify-between text-xs font-mono-tech uppercase tracking-[0.3em] text-neutral-400">
           <motion.div
@@ -89,13 +89,13 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Center Editorial Headlines */}
-        <div className="my-auto py-8 sm:py-12 max-w-4xl">
+        <div className="mt-auto lg:my-auto pt-10 pb-6 sm:py-12 max-w-4xl">
           {/* Main Master Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black uppercase tracking-tight text-white leading-[0.94]"
+            className="text-[2.35rem] sm:text-6xl md:text-7xl lg:text-8xl font-display font-black uppercase tracking-tight text-white leading-[0.94]"
           >
             NOT JUST CLOTHING.<br />
             <span className="text-stroke-white text-white/90">IT'S AN ATTITUDE.</span>
@@ -106,7 +106,7 @@ export const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="text-xs sm:text-base md:text-lg text-neutral-300 font-sans font-normal max-w-xl mt-4 sm:mt-6 leading-relaxed"
+            className="text-xs sm:text-base md:text-lg text-neutral-300 font-sans font-normal max-w-xl mt-3 sm:mt-6 leading-relaxed line-clamp-3 sm:line-clamp-none"
           >
             The ultimate house of heavy oversized t-shirts. Engineered 280 GSM French Terry, forward-pitched drop shoulders, and reinforced collars designed for people who define their own silhouette.
           </motion.p>
@@ -121,7 +121,7 @@ export const HeroSection: React.FC = () => {
             <motion.button
               whileTap={{ scale: 0.98 }}
               onClick={scrollToShop}
-              className="group relative px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-black font-mono-tech text-xs uppercase tracking-[0.25em] font-bold overflow-hidden transition-all duration-300 active:bg-neutral-200 flex items-center justify-center gap-3 shadow-2xl"
+              className="group relative rounded-full lg:rounded-none px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-black font-mono-tech text-xs uppercase tracking-[0.25em] font-bold overflow-hidden transition-all duration-300 active:bg-neutral-200 flex items-center justify-center gap-3 shadow-2xl"
             >
               <span>EXPLORE OVERSIZED ARCHIVE</span>
               <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -133,7 +133,7 @@ export const HeroSection: React.FC = () => {
                 setActiveFilter('heavyweight-280');
                 scrollToShop();
               }}
-              className="px-6 sm:px-8 py-3.5 sm:py-4 border border-white/30 text-white font-mono-tech text-xs uppercase tracking-[0.25em] font-semibold active:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm"
+              className="rounded-full lg:rounded-none px-6 sm:px-8 py-3.5 sm:py-4 border border-white/30 text-white font-mono-tech text-xs uppercase tracking-[0.25em] font-semibold active:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm"
             >
               <span>280 GSM HEAVYWEIGHT</span>
             </motion.button>
@@ -161,7 +161,7 @@ export const HeroSection: React.FC = () => {
 
           <button
             onClick={scrollToShop}
-            className="flex items-center gap-2 text-neutral-300 hover:text-white transition-colors uppercase tracking-widest text-[10px] sm:text-[11px] self-end sm:self-auto"
+            className="hidden sm:flex items-center gap-2 text-neutral-300 hover:text-white transition-colors uppercase tracking-widest text-[10px] sm:text-[11px] self-end sm:self-auto"
           >
             <span>DISCOVER THE DROPS</span>
             <ArrowDown className="w-3.5 h-3.5 animate-bounce" />

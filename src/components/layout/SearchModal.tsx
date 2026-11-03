@@ -63,7 +63,7 @@ export const SearchModal: React.FC = () => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[9998] flex items-start justify-center pt-16 sm:pt-24 px-4 sm:px-6">
+      <div className="fixed inset-0 z-[9998] flex items-start justify-center sm:pt-24 px-0 sm:px-6">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -78,10 +78,10 @@ export const SearchModal: React.FC = () => {
           initial={{ opacity: 0, y: -20, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -20, scale: 0.98 }}
-          className="relative w-full max-w-3xl bg-[#0F0F0F] border border-white/20 shadow-2xl overflow-hidden z-10"
+          className="relative w-full max-w-3xl h-full sm:h-auto bg-[#0F0F0F] border-0 sm:border border-white/20 shadow-2xl overflow-y-auto sm:overflow-hidden z-10 pt-[env(safe-area-inset-top)]"
         >
           {/* Input Header */}
-          <div className="flex items-center px-6 py-5 border-b border-white/10 gap-4">
+          <div className="flex items-center px-4 sm:px-6 py-4 sm:py-5 border-b border-white/10 gap-3 sm:gap-4">
             <Search className="w-5 h-5 text-neutral-400 shrink-0" />
             <input
               ref={inputRef}

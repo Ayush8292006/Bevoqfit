@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useIsMobile } from '../../hooks/useIsMobile';
 import { X, Ruler, HelpCircle } from 'lucide-react';
 import { useUI } from '../../context/UIContext';
 
 export const SizeGuideModal: React.FC = () => {
+  const isMobile = useIsMobile();
   const { isSizeGuideOpen, setIsSizeGuideOpen } = useUI();
   const [unit, setUnit] = useState<'in' | 'cm'>('in');
   const [tab, setTab] = useState<'oversized' | 'regular'>('oversized');
@@ -30,7 +32,7 @@ export const SizeGuideModal: React.FC = () => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[9995] flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-[9995] flex items-end sm:items-center justify-center p-0 sm:p-4">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -42,10 +44,10 @@ export const SizeGuideModal: React.FC = () => {
 
         {/* Modal Window */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          initial={isMobile ? { y: '100%' } : { opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-2xl bg-[#0F0F0F] border border-white/20 p-6 md:p-8 z-10 text-white max-h-[90vh] overflow-y-auto"
+          exit={isMobile ? { y: '100%' } : { opacity: 0, scale: 0.95, y: 20 }}
+          className="relative w-full max-w-2xl bg-[#0F0F0F] border-t sm:border border-white/20 rounded-t-[28px] sm:rounded-none p-5 md:p-8 z-10 text-white max-h-[90vh] overflow-y-auto"
         >
           {/* Header */}
           <div className="flex items-center justify-between pb-6 border-b border-white/10">

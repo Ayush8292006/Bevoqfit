@@ -4,10 +4,10 @@ import { COMMUNITY_POSTS } from '../../data/products';
 
 export const CommunityGallerySection: React.FC = () => {
   return (
-    <section className="py-24 bg-[#080808] border-b border-white/10">
+    <section className="py-10 lg:py-24 bg-[#080808] border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 lg:gap-4 mb-6 lg:mb-12">
           <div>
             <div className="text-xs font-mono-tech uppercase tracking-[0.3em] text-neutral-400 mb-2 flex items-center gap-2">
               <Instagram className="w-4 h-4 text-white" />
@@ -29,11 +29,11 @@ export const CommunityGallerySection: React.FC = () => {
         </div>
 
         {/* 6-Grid Editorial Community Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-3 lg:grid-cols-6 gap-1 sm:gap-4 -mx-4 sm:mx-0">
           {COMMUNITY_POSTS.map((post) => (
             <div
               key={post.id}
-              className="group relative aspect-[3/4] bg-[#141414] border border-white/10 overflow-hidden cursor-pointer"
+              className="group relative aspect-square sm:aspect-[3/4] bg-[#141414] border-0 sm:border border-white/10 overflow-hidden cursor-pointer"
             >
               <img
                 src={post.image}

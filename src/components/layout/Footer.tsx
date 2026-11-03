@@ -6,10 +6,10 @@ export const Footer: React.FC = () => {
   const { replayIntro, scrollToShop, setActiveFilter, showToast } = useUI();
 
   return (
-    <footer className="bg-[#050505] border-t border-white/10 text-white pt-16 pb-12 overflow-hidden">
+    <footer className="bg-[#050505] border-t border-white/10 text-white pt-10 lg:pt-16 pb-8 lg:pb-12 overflow-hidden">
       {/* Upper Brand Statement Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="pb-16 border-b border-white/10 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+        <div className="pb-10 lg:pb-16 border-b border-white/10 flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-8">
           <div>
             <div className="text-xs font-mono-tech tracking-[0.3em] uppercase text-neutral-400 mb-3 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* 4-Column Navigation Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-16 border-b border-white/10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 py-10 lg:py-16 border-b border-white/10">
           {/* Col 1: Brand Info */}
           <div className="space-y-4">
             <span className="font-display text-xl font-black tracking-widest">BEVOQFIT</span>

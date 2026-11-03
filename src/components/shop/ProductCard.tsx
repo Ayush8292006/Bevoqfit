@@ -78,7 +78,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             }
       }
       transition={{ type: 'spring', damping: 25, stiffness: 200, mass: 0.5 }}
-      className="group relative flex flex-col bg-[#0A0A0A] border border-white/10 hover:border-white transition-all duration-300 cursor-pointer overflow-hidden shadow-lg active:scale-[0.99]"
+      className="group relative flex flex-col h-full rounded-2xl lg:rounded-none bg-[#0A0A0A] border border-white/10 hover:border-white transition-all duration-300 cursor-pointer overflow-hidden shadow-lg active:scale-[0.99]"
     >
       {/* Product Image Stage */}
       <div className="relative aspect-[3/4] w-full bg-[#121212] overflow-hidden">
@@ -130,7 +130,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {/* Wishlist Heart Button (Top Right) */}
         <button
           onClick={handleToggleWishlist}
-          className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-10 p-1.5 sm:p-2 bg-black/70 backdrop-blur-md border border-white/20 hover:border-white text-white transition-all rounded-none active:scale-90"
+          className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-10 p-1.5 sm:p-2 bg-black/70 backdrop-blur-md border border-white/20 hover:border-white text-white transition-all rounded-full lg:rounded-none active:scale-90"
           aria-label="Toggle Wishlist"
         >
           <Heart
@@ -185,7 +185,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <button
                 key={size}
                 onClick={(e) => handleQuickAdd(e, size)}
-                className="py-1.5 border border-white/30 text-white active:bg-white active:text-black text-[10px] font-mono-tech font-bold text-center"
+                className="py-2 rounded-lg border border-white/30 text-white active:bg-white active:text-black text-[10px] font-mono-tech font-bold text-center"
               >
                 {size}
               </button>
@@ -244,10 +244,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               e.stopPropagation();
               setMobileQuickAddOpen(!mobileQuickAddOpen);
             }}
-            className="sm:hidden px-2.5 py-1 bg-white text-black text-[9px] font-mono-tech font-bold uppercase tracking-wider active:scale-95 transition-transform shrink-0 flex items-center gap-1"
+            className="sm:hidden w-8 h-8 rounded-full justify-center p-0 bg-white text-black text-[9px] font-mono-tech font-bold uppercase tracking-wider active:scale-95 transition-transform shrink-0 flex items-center gap-1"
           >
-            <Plus className="w-2.5 h-2.5" />
-            <span>ADD</span>
+            <Plus className="w-4 h-4" />
+            <span className="sr-only">ADD</span>
           </button>
 
           {/* Desktop Rating Display */}

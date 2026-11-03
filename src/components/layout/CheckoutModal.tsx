@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useIsMobile } from '../../hooks/useIsMobile';
 import { X, CheckCircle2, ShieldCheck, ArrowRight, Lock, Truck, CreditCard, Smartphone, Banknote } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useCart } from '../../context/CartContext';
 import { useUI } from '../../context/UIContext';
 
 export const CheckoutModal: React.FC = () => {
+  const isMobile = useIsMobile();
   const { items, subtotal, shipping, finalTotal, clearCart } = useCart();
   const { isCheckoutOpen, setIsCheckoutOpen, showToast } = useUI();
 
@@ -73,7 +75,7 @@ export const CheckoutModal: React.FC = () => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[9997] flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-[9997] flex items-end sm:items-center justify-center p-0 sm:p-4">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -85,10 +87,10 @@ export const CheckoutModal: React.FC = () => {
 
         {/* Modal Window */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          initial={isMobile ? { y: '100%' } : { opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-4xl bg-[#0D0D0D] border border-white/20 z-10 text-white max-h-[92vh] overflow-y-auto"
+          exit={isMobile ? { y: '100%' } : { opacity: 0, scale: 0.95, y: 20 }}
+          className="relative w-full max-w-4xl bg-[#0D0D0D] border-t sm:border border-white/20 rounded-t-[28px] sm:rounded-none z-10 text-white max-h-[92vh] overflow-y-auto"
         >
           {/* Top header */}
           <div className="flex items-center justify-between px-6 py-5 border-b border-white/10 bg-[#121212]">

@@ -93,7 +93,7 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 100 }}
           transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-          className="relative w-full max-w-5xl bg-[#0D0D0D] border-t sm:border border-white/20 z-10 text-white max-h-[92vh] sm:max-h-[94vh] overflow-y-auto shadow-2xl flex flex-col rounded-t-2xl sm:rounded-none pb-24 sm:pb-0"
+          className="relative w-full max-w-5xl bg-[#0D0D0D] border-t sm:border border-white/20 z-10 text-white max-h-[92vh] sm:max-h-[94vh] overflow-y-auto shadow-2xl flex flex-col rounded-t-[28px] sm:rounded-none pb-28 sm:pb-0"
         >
           {/* Close button */}
           <button
@@ -365,7 +365,7 @@ const ProductDetailsContent: React.FC<InnerProps> = ({
           </div>
 
           {/* Sticky Mobile Bottom Add Bar (Only on mobile devices for 1-tap conversion) */}
-          <div className="sm:hidden fixed bottom-0 inset-x-0 z-30 bg-[#0A0A0A]/95 backdrop-blur-md border-t border-white/20 p-3 flex gap-2 shadow-2xl">
+          <div className="sm:hidden fixed bottom-0 inset-x-0 z-30 bg-[#0A0A0A]/95 backdrop-blur-md border-t border-white/20 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex gap-2 shadow-2xl">
             <button
               onClick={handleAddToCart}
               className="flex-1 py-3.5 bg-white text-black font-mono-tech font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 active:scale-98"

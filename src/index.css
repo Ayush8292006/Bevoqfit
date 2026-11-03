@@ -85,3 +85,41 @@
   background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
   background-size: 24px 24px;
 }
+
+/* ------------------------------------------------------------------
+   APP-LIKE MOBILE LAYER (< 1024px). Desktop stays a classic website.
+------------------------------------------------------------------- */
+@layer components {
+  /* Horizontal swipe rows with snap (used for carousels on mobile) */
+  .snap-row {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: 1rem;
+  }
+  .snap-row::-webkit-scrollbar { display: none; }
+  .snap-row > * { scroll-snap-align: start; }
+}
+
+@media (max-width: 1023px) {
+  html {
+    scroll-padding-top: 72px;
+  }
+  body {
+    overscroll-behavior-y: none;
+  }
+  /* Buttons/nav feel like native controls: no text selection or callouts */
+  button,
+  nav,
+  header {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  img {
+    -webkit-user-drag: none;
+  }
+}

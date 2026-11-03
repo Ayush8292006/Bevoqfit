@@ -30,10 +30,10 @@ export const FabricSpecsSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#090909] border-b border-white/10">
+    <section className="py-10 lg:py-24 bg-[#090909] border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-left md:text-center max-w-3xl mx-auto mb-6 lg:mb-16">
           <div className="text-xs font-mono-tech uppercase tracking-[0.3em] text-neutral-400 mb-2 flex items-center justify-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-white" />
             <span>FABRIC LAB & PRECISION METRICS</span>
@@ -47,11 +47,11 @@ export const FabricSpecsSection: React.FC = () => {
         </div>
 
         {/* 4 Feature Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="snap-row gap-3 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6">
           {specs.map((s) => (
             <div
               key={s.num}
-              className="p-8 bg-[#111111] border border-white/10 hover:border-white transition-all duration-300 flex flex-col justify-between group"
+              className="w-[78%] sm:w-[55%] md:w-auto shrink-0 rounded-3xl md:rounded-none p-6 md:p-8 bg-[#111111] border border-white/10 hover:border-white transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <span className="font-display text-4xl font-black text-neutral-700 group-hover:text-white transition-colors">

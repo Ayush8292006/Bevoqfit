@@ -7,12 +7,12 @@ export const BrandStorySection: React.FC = () => {
   const { scrollToShop } = useUI();
 
   return (
-    <section className="py-24 bg-[#0A0A0A] border-b border-white/10 relative overflow-hidden">
+    <section className="py-10 lg:py-24 bg-[#0A0A0A] border-b border-white/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-center">
           {/* Left: Large Editorial Campaign Photography */}
           <div className="lg:col-span-6 relative">
-            <div className="relative aspect-[4/5] w-full bg-[#141414] border border-white/15 overflow-hidden group">
+            <div className="relative aspect-[4/3] sm:aspect-[4/5] w-full bg-[#141414] border border-white/15 overflow-hidden group rounded-3xl lg:rounded-none">
               {/* Real authentic monochrome streetwear editorial photography */}
               <img
                 src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=1400&q=85"
@@ -40,7 +40,7 @@ export const BrandStorySection: React.FC = () => {
           </div>
 
           {/* Right: Editorial Narrative */}
-          <div className="lg:col-span-6 space-y-8">
+          <div className="lg:col-span-6 space-y-6 lg:space-y-8">
             <div>
               <div className="text-xs font-mono-tech uppercase tracking-[0.3em] text-neutral-400 mb-3 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-white" />
@@ -54,7 +54,7 @@ export const BrandStorySection: React.FC = () => {
               </h2>
 
               {/* Exact Prompt Supporting Copy */}
-              <p className="text-base sm:text-lg text-neutral-300 font-sans leading-relaxed mt-6">
+              <p className="text-sm sm:text-lg text-neutral-300 font-sans leading-relaxed mt-4 lg:mt-6">
                 BEVOQFIT is about more than what you wear. It's about how you express yourself. Clean silhouettes, effortless fits, and everyday essentials designed for people who define their own style.
               </p>
             </div>
@@ -80,7 +80,7 @@ export const BrandStorySection: React.FC = () => {
             <div className="pt-2">
               <button
                 onClick={scrollToShop}
-                className="px-8 py-4 bg-white text-black font-mono-tech text-xs uppercase tracking-[0.2em] font-bold hover:bg-neutral-200 transition-colors flex items-center gap-3"
+                className="w-full sm:w-auto justify-center rounded-full lg:rounded-none px-8 py-4 bg-white text-black font-mono-tech text-xs uppercase tracking-[0.2em] font-bold hover:bg-neutral-200 active:scale-[0.98] transition flex items-center gap-3"
               >
                 <span>EXPERIENCE THE FIT</span>
                 <ArrowUpRight className="w-4 h-4" />

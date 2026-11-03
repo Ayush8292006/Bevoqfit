@@ -17,7 +17,7 @@ export const NewsletterSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-[#080808] border-b border-white/10 relative overflow-hidden">
+    <section className="py-10 lg:py-24 bg-[#080808] border-b border-white/10 relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mx-auto mb-6 text-neutral-300">
           <Mail className="w-5 h-5" />
